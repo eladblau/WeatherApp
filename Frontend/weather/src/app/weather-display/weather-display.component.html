@@ -1,0 +1,42 @@
+<div class="weather-display-comp">
+
+    <div class="data-section">
+        <div class="weather-details-area">
+            <div *ngIf="loadingResults" class="loading-container">
+                <mat-spinner></mat-spinner>
+            </div>
+            <div *ngIf="selectedLocation && currentWeather" class="selected-location-weather">
+                <div *ngIf="currentWeather?.weatherIcon > 0" class="weather-icon">
+                    <img class="weather-image" [src]="watherImageSrc" />
+                </div>
+                <div class="weather-text-details">
+                    <div class="selected-location-name">
+                        {{selectedLocation.localizedName}}
+                    </div>
+                    <div class="current-weather-details">
+                        <div class="celsius">{{currentWeather?.temperature?.metric?.value}}</div>
+                        <div class="weather-text">{{currentWeather?.weatherText}}</div>
+                    </div>
+                </div>
+                <div class="favorite-button-container">
+                    <button mat-raised-button class="add-remove-favorite" (click)="addRemoveFavoriteClicked($event)">
+                        <mat-icon class="favorite-icon">{{currentWeather?.isFavorite ? 'favorite' : 'favorite_border'}}
+                        </mat-icon>
+                        {{currentWeather?.isFavorite ? 'Remove from favorites' : 'Add to favorites'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="locations-section">
+            <mat-list class="locations-list">
+                <mat-list-item *ngFor="let loc of locationsList" (click)="locationClicked($event, loc)"
+                    class="location-list-item">
+                    <div class="location-name">
+                        {{loc.localizedName}}
+                    </div>
+                    <!-- <mat-divider></mat-divider> -->
+                </mat-list-item>
+            </mat-list>
+        </div>
+    </div>
+</div>

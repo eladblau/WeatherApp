@@ -1,0 +1,38 @@
+$topToolBarHeight: 50px;
+
+.main-zone-comp {
+    .top-toolbar {
+        background-color: #0d47a1;
+        color: #fff;
+        height: $topToolBarHeight;
+        display: flex;
+        align-items: center;
+        .app-logo {
+            display: flex;
+            align-items: center;
+            margin-right: 10px;
+            color: #e2e600;
+        }
+    }
+    .loading-overlay {
+        // visibility: hidden;
+        display: none;
+        position: absolute;
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+        z-index: 999;
+        background-color: transparent;
+        &.visible {
+            // visibility: visible;
+            display: block;
+        }
+        .loading-progress-bar {
+            $progBarHeight: 6px;
+
+            height: $progBarHeight;
+            top: $topToolBarHeight - $progBarHeight;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<div class="favorites-comp">
+
+    <div *ngIf="locationsList.length == 0" class="no-favorites">
+        You have no favorites
+    </div>
+
+    <app-weather-display [locationsList]="locationsList" (favoriteChanged)="favoriteChanged($event)">
+    </app-weather-display>
+
+</div>

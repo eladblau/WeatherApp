@@ -1,0 +1,27 @@
+
+<div class="main-zone-comp">
+
+  <mat-toolbar class="top-toolbar">
+    <div class="app-logo">
+        <mat-icon class="app-icon">wb_sunny</mat-icon>
+    </div>
+    <span class="app-name">Weather App</span>
+      
+  </mat-toolbar>
+
+  <div class="loading-overlay" [class.visible]="loading">
+      <mat-progress-bar class="loading-progress-bar" mode="query"></mat-progress-bar>
+  </div>
+
+
+  <nav mat-tab-nav-bar>
+      <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.link" routerLinkActive #rla="routerLinkActive"
+          [active]="rla.isActive">
+          {{link.label}}
+      </a>
+  </nav>
+
+  <router-outlet></router-outlet>
+
+
+</div>

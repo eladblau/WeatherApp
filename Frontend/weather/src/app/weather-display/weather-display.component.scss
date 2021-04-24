@@ -1,0 +1,59 @@
+@import "../../styles.scss";
+
+.weather-display-comp {
+    .data-section {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 10px;
+        .weather-details-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            .selected-location-weather {
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+                @media (max-width: 767px) {
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                }
+                .weather-text-details {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 25px;
+                    @media (max-width: 767px) {
+                        margin: 25px 0;
+                    }
+                    .current-weather-details {
+                        display: flex;
+                        align-items: center;
+                        .celsius {
+                            margin-right: 10px;
+                        }
+                    }
+                }
+                .add-remove-favorite {
+                    .favorite-icon {
+                        color: red;
+                    }
+                }
+            }
+        }
+        .locations-section {
+            display: flex;
+            .locations-list {
+                width: 100%;
+                height: calc(100vh - 198px);
+                overflow-y: auto;
+                .location-list-item {
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #efefef;
+                    }
+                }
+            }
+        }
+    }
+}
