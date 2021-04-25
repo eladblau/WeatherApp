@@ -39,41 +39,6 @@ namespace WeatherApp.Helpers
                     {
                         var ObjResponse = Res.Content.ReadAsStringAsync().Result;
                         locations = JsonConvert.DeserializeObject<List<Location>>(ObjResponse);
-
-                        string res = @" [
-                          {
-                        'Version': 1,
-                            'Key': '215854',
-                            'Type': 'City',
-                            'Rank': 31,
-                            'LocalizedName': 'Tel Aviv',
-                            'Country': {
-                            'ID': 'IL',
-                              'LocalizedName': 'Israel'
-                            },
-                            'AdministrativeArea': {
-                            'ID': 'TA',
-                              'LocalizedName': 'Tel Aviv'
-                            }
-                    },
-                          {
-                        'Version': 1,
-                            'Key': '3431644',
-                            'Type': 'City',
-                            'Rank': 45,
-                            'LocalizedName': 'Telanaipura',
-                            'Country': {
-                            'ID': 'ID',
-                              'LocalizedName': 'Indonesia'
-                            },
-                            'AdministrativeArea': {
-                            'ID': 'JA',
-                              'LocalizedName': 'Jambi'
-                            }
-                    }
-                        ]";
-
-
                     }
                     return locations;
                 }
@@ -110,9 +75,58 @@ namespace WeatherApp.Helpers
                     {
                         var ObjResponse = Res.Content.ReadAsStringAsync().Result;
                         weather = JsonConvert.DeserializeObject<List<Weather>>(ObjResponse).FirstOrDefault();
+                    }
+                    return weather;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
-                        string res = @"[
+        private static string GetDummyData(int type)
+        {
+            string res = string.Empty;
+            switch (type)
+            {
+                case 1: //Locations
+                    res = @" [
+                          {
+                        'Version': 1,
+                            'Key': '215854',
+                            'Type': 'City',
+                            'Rank': 31,
+                            'LocalizedName': 'Tel Aviv',
+                            'Country': {
+                            'ID': 'IL',
+                              'LocalizedName': 'Israel'
+                            },
+                            'AdministrativeArea': {
+                            'ID': 'TA',
+                              'LocalizedName': 'Tel Aviv'
+                            }
+                    },
+                          {
+                        'Version': 1,
+                            'Key': '3431644',
+                            'Type': 'City',
+                            'Rank': 45,
+                            'LocalizedName': 'Telanaipura',
+                            'Country': {
+                            'ID': 'ID',
+                              'LocalizedName': 'Indonesia'
+                            },
+                            'AdministrativeArea': {
+                            'ID': 'JA',
+                              'LocalizedName': 'Jambi'
+                            }
+                    }
+                        ]";
+                    break;
+                case 2: //Weather
+                    res = @"[
                           {
                             'LocalObservationDateTime': '2021-04-23T08:55:00+03:00',
                             'EpochTime': 1619157300,
@@ -137,14 +151,11 @@ namespace WeatherApp.Helpers
                             'Link': 'http://www.accuweather.com/en/il/tel-aviv/215854/current-weather/215854?lang=en-us'
                           }
                         ]";
-                    }
-                    return weather;
-                }
+                    break;
+                default:
+                    break;
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return res;
         }
     }
 }
